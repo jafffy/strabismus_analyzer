@@ -17,7 +17,6 @@ def analyze_direction(log_location):
 
     for (time, x, y, z) in directions_with_time:
         direction = np.array([x, y, z])
-        print(time, direction)
 
         angle = math.atan2(
             np.linalg.norm(np.cross(direction, mean_direction)),
