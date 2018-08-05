@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from strabismus.kernel import kernel
+import os
 
 
 class StrabismusApp:
@@ -46,14 +47,16 @@ class StrabismusApp:
         self.data_repo_entry.insert(0, self.data_repo_path)
 
     def find_pid(self):
-        pass
+        ans = os.path.join(self.data_repo_path, self.pid_entry.get())
+        kernel.analyze_direction(os.path.join(ans, '간헐적외사시_left.csv'))
+        kernel.analyze_direction(os.path.join(ans, '간헐적외사시_right.csv'))
 
     def run(self):
         self.root.mainloop()
 
         if self.data_repo_path:
-            with open('.aeisconfig', 'w') as aeisconfig:
-                aeisconfig.write(self.data_repo_path)
+            with open('.aeis_config', 'w') as aeis_config:
+                aeis_config.write(self.data_repo_path)
 
 
 if __name__ == '__main__':
