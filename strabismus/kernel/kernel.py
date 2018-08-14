@@ -19,7 +19,7 @@ def analyze_direction(log_location):
         direction = np.array([x, y, z])
 
         angle = math.atan2(
-            np.linalg.norm(np.cross(direction, mean_direction)),
+            np.linalg.norm(np.cross(direction, np.array([0, 0, 1]))),
             np.dot(direction, mean_direction))
 
         mean_angle += angle
@@ -28,4 +28,4 @@ def analyze_direction(log_location):
     mean_angle /= len(directions_with_time)
     std_angle = (std_angle / len(directions_with_time) - mean_angle ** 2) ** 0.5
 
-    print(mean_angle, std_angle)
+    return mean_angle, std_angle
